@@ -1765,7 +1765,7 @@ public class ViewPostDetailFragment extends Fragment implements FragmentCommunic
                 new FetchRemovedComment.FetchRemovedCommentListener() {
                     @Override
                     public void fetchSuccess(Comment comment) {
-                        mCommentsAdapter.editComment(comment.getAuthor(), comment.getCommentMarkdown(), position);
+                        mCommentsAdapter.editComment(comment.getAuthor(), comment.getCommentMarkdown(), position, true);
                     }
 
                     @Override

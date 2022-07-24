@@ -58,6 +58,7 @@ public class Comment implements Parcelable {
     private int placeholderType;
     private boolean isLoadingMoreChildren;
     private boolean loadMoreChildrenFailed;
+    private boolean isRestored;
 
     public Comment(String id, String fullName, String author, String authorFlair,
                    String authorFlairHTML, String linkAuthor,
@@ -93,6 +94,7 @@ public class Comment implements Parcelable {
         this.hasExpandedBefore = false;
         moreChildrenStartingIndex = 0;
         placeholderType = NOT_PLACEHOLDER;
+        this.isRestored = false;
     }
 
     public Comment(String parentFullName, int depth, int placeholderType) {
@@ -147,6 +149,7 @@ public class Comment implements Parcelable {
         placeholderType = in.readInt();
         isLoadingMoreChildren = in.readByte() != 0;
         loadMoreChildrenFailed = in.readByte() != 0;
+        isRestored = in.readByte() != 0;
     }
 
     public String getId() {
@@ -296,6 +299,14 @@ public class Comment implements Parcelable {
         }
     }
 
+    public boolean isRestored() {
+        return isRestored;
+    }
+
+    public void setRestored(boolean restored) {
+        isRestored = restored;
+    }
+
     public boolean hasExpandedBefore() {
         return hasExpandedBefore;
     }
@@ -424,5 +435,6 @@ public class Comment implements Parcelable {
         parcel.writeInt(placeholderType);
         parcel.writeByte((byte) (isLoadingMoreChildren ? 1 : 0));
         parcel.writeByte((byte) (loadMoreChildrenFailed ? 1 : 0));
+        parcel.writeByte((byte) (isRestored ? 1 : 0));
     }
 }

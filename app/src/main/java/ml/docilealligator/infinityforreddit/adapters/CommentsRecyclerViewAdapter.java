@@ -985,8 +985,13 @@ public class CommentsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     public void editComment(String commentAuthor, String commentContentMarkdown, int position) {
-        if (commentAuthor != null)
+        this.editComment(commentAuthor, commentContentMarkdown, position, false);
+    }
+
+    public void editComment(String commentAuthor, String commentContentMarkdown, int position, boolean isRestored) {
+        if (commentAuthor != null) {
             mVisibleComments.get(position).setAuthor(commentAuthor);
+        }
 
         mVisibleComments.get(position).setCommentMarkdown(commentContentMarkdown);
         if (mIsSingleCommentThreadMode) {
